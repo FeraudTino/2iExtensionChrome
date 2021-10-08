@@ -1,0 +1,28 @@
+{
+
+  "description": "Insertion JS",
+  "manifest_version": 2,
+  "name": "InsertJS",
+  "version": "0.0.0.1",
+  "homepage_url": "http://tinoferauddentinger.eu",
+  "icons": {
+    "48": "icons/icon48.png"
+  },
+  
+    "background": {
+    "scripts": ["background.js"]
+  },
+
+  "permissions": [
+    "activeTab"
+  ],
+
+"browser_action": {
+    "pop-up" : "test.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  }
+
+}
