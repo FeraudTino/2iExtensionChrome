@@ -9,15 +9,21 @@ console.log(test);
 */
 
 $(document).ready(function () {
-	const giphy = {
+
+    var choix = document.getElementById('choix').value;
+    if(choix == ""){
+        choix = "fail";
+    }
+
+	var giphy = {
 		baseURL: "https://api.giphy.com/v1/gifs/",
 		apiKey: "0UTRbFtkMxAplrohufYco5IY74U8hOes",
-		tag: "happy",
+		tag: choix,
 		type: "random",
 		rating: "pg-13"
 	};
 
-	let giphyURL = encodeURI(
+	var giphyURL = encodeURI(
 		giphy.baseURL +
 			giphy.type +
 			"?api_key=" +
@@ -28,18 +34,65 @@ $(document).ready(function () {
 			giphy.rating
 	);
 
+    function updateTag(){
+        var choix = document.getElementById('choix').value;
+        if(choix == ""){
+            giphy = {
+                baseURL: "https://api.giphy.com/v1/gifs/",
+                apiKey: "0UTRbFtkMxAplrohufYco5IY74U8hOes",
+                tag: "fail",
+                type: "random",
+                rating: "pg-13"
+            };
+            giphyURL = encodeURI(
+                giphy.baseURL +
+                    giphy.type +
+                    "?api_key=" +
+                    giphy.apiKey +
+                    "&tag=" +
+                    giphy.tag +
+                    "&rating=" +
+                    giphy.rating
+            );
+        }else{
+            giphy = {
+                baseURL: "https://api.giphy.com/v1/gifs/",
+                apiKey: "0UTRbFtkMxAplrohufYco5IY74U8hOes",
+                tag: choix,
+                type: "random",
+                rating: "pg-13"
+            };
+
+            giphyURL = encodeURI(
+                giphy.baseURL +
+                    giphy.type +
+                    "?api_key=" +
+                    giphy.apiKey +
+                    "&tag=" +
+                    giphy.tag +
+                    "&rating=" +
+                    giphy.rating
+            );
+        }
+
+        newGif();
+    }
+
+
 	var newGif = () => $.getJSON(giphyURL, (json) => renderGif(json.data));
 
 	var renderGif = (_giphy) => {
 		console.log(_giphy);
         var image = document.getElementById("test");
         image.src = _giphy.image_original_url;
+ 
+        console.log(giphy);
 	};
 
-	newGif();
+	updateTag();
 
 	const newGifButton = $("#new-gif");
 
-	newGifButton.click(newGif);
+	newGifButton.click(updateTag);
 });
 
