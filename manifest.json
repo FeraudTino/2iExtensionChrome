@@ -1,8 +1,8 @@
 {
 
-  "description": "Insertion JS",
+  "description": "2iTech GIF !!!",
   "manifest_version": 2,
-  "name": "InsertJS",
+  "name": "Un gif aléatoire !",
   "version": "0.0.0.1",
   "homepage_url": "http://tinoferauddentinger.eu",
   "icons": {
@@ -13,16 +13,21 @@
     "scripts": ["background.js"]
   },
 
-  "permissions": [
-    "activeTab"
-  ],
+  "permissions": [ 
+    "http://*/*",
+    "https://*/*",
+       "tabs",
+       "notifications" ,
+       "clipboardRead",
+       "clipboardWrite"
+   ],
 
 "browser_action": {
-    "pop-up" : "test.html",
     "default_icon": {
       "16": "icons/icon16.png",
       "32": "icons/icon32.png"
-    }
+    },
+    "default_popup": "popup.html"
   }
 
 }
